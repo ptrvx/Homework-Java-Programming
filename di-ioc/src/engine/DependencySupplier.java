@@ -6,14 +6,14 @@ import res.Simple;
 import java.util.HashMap;
 
 public class DependencySupplier {
-    private HashMap<Class, Class> dependecies = new HashMap<>();
+    private HashMap<Class, Class> dependencies = new HashMap<>();
 
     public DependencySupplier() {
-        dependecies.put(InterTest.class, Simple.class);
+        dependencies.put(InterTest.class, Simple.class);
     }
 
     public Class getImplementation(Class cls) {
-        return dependecies.get(cls);
+        return dependencies.get(cls);
     }
 
 }

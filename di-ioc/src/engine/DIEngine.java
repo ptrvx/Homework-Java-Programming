@@ -36,6 +36,10 @@ public class DIEngine {
 
     public Object init(Class cls) {
 
+        if (cls.isInterface()) {
+            cls = supplier.getImplementation(cls);
+        }
+
         BeanScope scope = getScope(cls);
 
         if (scope.equals(BeanScope.singleton)) {
@@ -45,14 +49,7 @@ public class DIEngine {
 
 
         try {
-            Constructor constructor;
-
-            if (cls.isInterface()) {
-                constructor = supplier.getImplementation(cls).getDeclaredConstructor();
-            } else {
-                constructor = cls.getDeclaredConstructor();
-            }
-
+            Constructor constructor= cls.getDeclaredConstructor();
             Object o = constructor.newInstance();
 
             for (Field f : cls.getDeclaredFields()) {
@@ -76,6 +73,7 @@ public class DIEngine {
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        System.err.println("Error! - Dependency Injection Fail.");
         return null;
     }
 }
