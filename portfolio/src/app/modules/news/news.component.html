@@ -1,0 +1,36 @@
+<div class="page">
+    <div class="area">
+        <div class="news">
+
+            <mat-card *ngFor='let article of news;' class='article'>
+                <mat-card-title>
+                    {{ article.title }}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{ article.source.name }}
+                </mat-card-subtitle>
+                <img mat-card-image src='{{ article.urlToImage }} ' />
+                <mat-card-content>
+                    {{ article.description }}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button class='action' (click)="like(article.url)">
+                        <span *ngIf='article.liked; else elseBlock' class="like">
+                            <fa-icon [icon]="fasHeart"></fa-icon> Like
+                        </span>
+                        <ng-template #elseBlock>
+                            <span>
+                            <fa-icon [icon]='farHeart'></fa-icon> Like</span>
+                        </ng-template>
+
+                    </button>
+                    <a href='{{ article.url }}' target="_blank" mat-button class='action'>
+                        <fa-icon [icon]="faLink"></fa-icon>
+                        Read Story
+                    </a>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

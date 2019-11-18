@@ -1,0 +1,27 @@
+.menu {
+  background: rgba(26, 26, 27, 0.87);
+  color: white;
+  
+}
+
+nav {
+  display: flex;
+
+  max-width: 640px;
+  margin: 0 auto;
+
+  .active {
+    color: rgb(248, 53, 53);
+    border-bottom: 5px solid red;
+    border-radius: 0px;
+  }
+
+  .mat-button {
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+}
+
+.area {
+  max-width: 1640px;
+}

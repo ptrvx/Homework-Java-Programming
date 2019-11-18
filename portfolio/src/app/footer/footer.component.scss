@@ -1,0 +1,28 @@
+.footer {
+  background: rgba(26, 26, 27, 0.87);
+  color: white;
+  padding: 15px;
+}
+
+footer {
+  display: flex;
+
+  max-width: 640px;
+  margin: 0 auto;
+
+  .mat-button {
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+
+  a {
+    color: white;
+    padding: 10px;
+  }
+
+  min-height: 11vh;
+}
+
+.area {
+  max-width: 1640px;
+}

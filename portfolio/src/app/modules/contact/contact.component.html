@@ -1,0 +1,22 @@
+<div class="area">
+    <form class="inputForm" [formGroup]='contactForm' (ngSubmit)='submitForm()'>
+        <mat-form-field>
+            <input matInput placeholder='Ime' type='text' name='firstName' formControlName='firstName'>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder='Prezime' type='text' name='lastName' formControlName='lastName'>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder='Email' type='mail' name='email' formControlName='email' required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder='Vaša poruka' name='text' formControlName='text' required></textarea>
+        </mat-form-field>
+
+        <button mat-button value='Submit' type='submit' [disabled]='!contactForm.valid'>Send</button>
+
+    </form>
+</div>

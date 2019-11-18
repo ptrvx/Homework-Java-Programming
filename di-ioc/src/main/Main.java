@@ -16,7 +16,7 @@ public class Main {
 
 
         Third a = (Third)die.init(Third.class);
-        Third b = (Third)die.init(Third.class);
+//        Third b = (Third)die.init(Third.class);
 
     }
 }
