@@ -1,0 +1,12 @@
+<div class='container'>
+    <h1>Create new machine</h1>
+    
+    <form class='form-container' [formGroup]='createForm' (ngSubmit)='onSubmit(createForm.value)'>
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName='name' type='text' required> 
+        </mat-form-field>
+
+        <button mat-button type='submit' class='btn btn-success'>Submit</button>
+    </form>
+
+</div>

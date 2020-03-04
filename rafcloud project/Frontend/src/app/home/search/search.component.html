@@ -1,0 +1,74 @@
+<div class="card mt-4">
+    <h4 class="card-header">Search Machines</h4>
+    <div class="card-body">
+        <form [formGroup]='searchForm' (ngSubmit)='onSearch()' class='form-inline'>
+            <div class='form-group mr-2'>
+                <label for='name' class='sr-only'>Name&nbsp;</label>
+                <input type='text' formControlName='name' class='form-control' placeholder="Name" />
+            </div>
+            <div class='form-group form-check mr-2'>
+                <input type='checkbox' class='form-check-input' id='stopped' formControlName='stopped'>
+                <label for='stopped'>stopped</label>
+            </div>
+            <div class='form-group form-check mr-2'>
+                <input type='checkbox' class='form-check-input' id='running' formControlName='running'>
+                <label for='running'>running</label>
+            </div>
+            <div class='form-group mr-2'>
+                <label for='dateFrom'>Start Date:&nbsp;</label>
+                <input type='text' formControlName='dateFrom' class='form-control' placeholder="yyyy-MM-dd"
+                    [ngClass]="{ 'is-invalid': submitted && fs.dateFrom.errors }">
+            </div>
+            <div class='form-group mr-2'>
+                <label for='dateTo'>End Date:&nbsp;</label>
+                <input type='text' formControlName='dateTo' class='form-control' placeholder="yyyy-MM-dd"
+                    [ngClass]="{ 'is-invalid': submitted && fs.dateTo.errors }">
+            </div>
+            <button [disabled]='loading' class='btn btn-primary'>
+                <span *ngIf='loading' class='spinner-border spinner-border-sm mr-1'></span>
+                Filter
+            </button>
+            <div *ngIf='error' class='alert alert-danger mt-3 mb-0'>{{error}}</div>
+        </form>
+
+        <br>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+
+        <table *ngIf="machines && machines.length > 0; else unavailable" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope='col'>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let m of machines'>
+                    <th scope='row'>{{m.id}}</th>
+                    <td>{{m.name}}</td>
+                    <td>{{m.status}}</td>
+                    <td>{{m.datetime | date:'yyyy-MM-dd'}}</td>
+                    <td *ngIf='m.status == "STOPPED"; else stopelse'>
+                        <button class='btn faicon' (click)='start(m.id)' [disabled]='m.processing'><i class='fa fa-play'></i></button>
+                        &nbsp;
+                        <button class='btn faicon' (click)='restart(m.id)' [disabled]='m.processing'><i class='fas fa-redo'></i></button>
+                        &nbsp;
+                        <button class='btn faicon' (click)='destroy(m.id)'><i class='fas fa-trash'></i></button>
+                    </td>
+                    <ng-template #stopelse>
+                        <td>
+                            <button class='btn faicon' (click)='stop(m.id)' [disabled]='m.processing'><i class='fas fa-stop'></i></button>
+                            &nbsp;
+                            <button class='btn faicon' (click)='destroy(m.id)'><i class='fas fa-trash'></i></button>
+                        </td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #unavailable>
+            No machines available.
+        </ng-template>
+    </div>
+</div>

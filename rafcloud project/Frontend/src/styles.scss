@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+.faicon {
+    background-color: lightblue; /* Blue background */
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    cursor: pointer; /* Mouse pointer on hover */
+    padding: 0 6px;
+  }
+  
+  /* Darker background on mouse-over */
+  .faicon:hover {
+    background-color: rgb(70, 124, 206);
+    color: white;
+  }

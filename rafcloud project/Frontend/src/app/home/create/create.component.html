@@ -1,0 +1,21 @@
+<div class="card mt-4">
+    <h4 class="card-header">Create New Machine</h4>
+    <div class="card-body">
+        <form [formGroup]='createForm' (ngSubmit)="onCreate()" class='form-inline'>
+            <div class='form-group mr-2'>
+                <label for='name'>Machine Name &nbsp;</label>
+                <input type='text' formControlName='name' class='form-control' [ngClass]="{ 'is-invalid': submitted && fc.name.errors }" />
+                <div *ngIf='submitted && fc.name.errors' class='invalid-feedback'>
+                    <div *ngIf='fc.name.errors.required'>Name is required</div>
+                </div>
+            </div>
+            <button [disabled]='loading' class='btn btn-primary'>
+                <span *ngIf='loading' class='spinner-border spinner-border-sm mr-1'></span>
+                Submit
+            </button>
+        </form>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </div>
+</div>
+
+<div><br></div>

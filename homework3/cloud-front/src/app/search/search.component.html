@@ -1,0 +1,77 @@
+<div class='container'>
+
+<h1>Search machines</h1>
+
+<form class='form-container' [formGroup]='searchForm' (ngSubmit)='submitSearch(searchForm.value)'>
+
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName='name' type='text'>
+    </mat-form-field>
+    &nbsp;
+    <mat-checkbox formControlName='stop'>
+        STOPPED&nbsp;
+    </mat-checkbox>
+    &nbsp;
+    <mat-checkbox formControlName='run'>
+        RUNNING&nbsp;
+    </mat-checkbox>
+    &nbsp;
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker1" placeholder="Date from" formControlName='dateFrom'>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Date to">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+
+    <button mat-button type='submit' class='btn btn-success'>Search</button>
+
+</form>
+
+    <table class='machineTable'>
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+        <tr *ngFor="let m of machines">
+            <td>{{m.id}}</td>
+            <td>{{m.name}}</td>
+            <td>{{m.status}}</td>
+            <td><span>{{m.datetime | date:'yyyy-MM-dd'}}</span></td>
+            <td>
+                &nbsp;
+                <button mat-button (click)="start(m.id)">
+                    Start
+                </button>
+                
+                <button mat-button (click)="stop(m.id)">
+                    Stop
+                </button>
+
+                <button mat-button (click)="restart(m.id)">
+                    Restart
+                </button>
+
+                <button mat-button (click)="delete(m.id)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+
+    </table>
+
+<br>
+<button mat-button (click)="testButton()">Test Button</button>
+
+</div>
+
+<app-create></app-create>
